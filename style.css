@@ -1,0 +1,123 @@
+/* Estilos simples para que se vea un poco organizado */
+
+/* Quita márgenes y relleno por defecto */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Diseño general */
+  body {
+    font-family: sans-serif;
+    background: #222;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  /* Sección menú principal */
+  #menuPrincipal {
+    margin: 20px auto;
+    max-width: 300px;
+    border: 2px solid #fff;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  #menuPrincipal button, #menuPrincipal input {
+    margin-top: 10px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  /* Tabla de puntajes */
+  #tablaPuntajes {
+    max-width: 400px;
+    margin: 20px auto;
+    border: 2px solid #fff;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  #tablaPuntajes table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+  }
+  
+  #tablaPuntajes th, #tablaPuntajes td {
+    border: 1px solid #ccc;
+    padding: 6px;
+  }
+  
+  /* Pantalla de juego */
+  #pantallaJuego {
+    max-width: 400px;
+    margin: 20px auto;
+    border: 2px solid #fff;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  /* Botones de colores */
+  #tablero {
+    display: inline-block;
+    margin-top: 20px;
+  }
+  
+  .fila {
+    display: flex;
+  }
+  
+  .botonColor {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  /* Colores con un tono que recuerde al juego original */
+  .verde {
+    background: green;
+  }
+  
+  .rojo {
+    background: red;
+  }
+  
+  .amarillo {
+    background: gold;
+  }
+  
+  .azul {
+    background: blue;
+  }
+  
+  /* Efecto de "iluminación" cuando se activa el color */
+  .botonColor.activo {
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+  
+  /* Mensaje de fin */
+  #mensajeFin {
+    margin-top: 20px;
+    border-top: 1px solid #fff;
+    padding-top: 10px;
+  }
+  
+  /* Clase oculto */
+  .oculto {
+    display: none;
+  }
+  
+  /* Responsivo básico */
+  @media (max-width: 500px) {
+    .botonColor {
+      width: 70px;
+      height: 70px;
+    }
+  }
+  
