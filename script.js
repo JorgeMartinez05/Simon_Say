@@ -72,3 +72,53 @@ btnReiniciar.addEventListener("click", () => {
 btnVolverMenu.addEventListener("click", () => {
   volverAlMenu();
 });
+
+
+/*
+ * Ver y cerrar puntajes
+ */
+btnVerPuntajes.addEventListener("click", mostrarPuntajes);
+btnCerrarPuntajes.addEventListener("click", () => {
+  tablaPuntajes.classList.add("oculto");
+});
+
+/*
+ * Funciones principales del juego
+ */
+function iniciarJuego(){
+  // Ocultamos el menú, mostramos la pantalla de juego
+  menuPrincipal.classList.add("oculto");
+  pantallaJuego.classList.remove("oculto");
+
+  // Mensaje de bienvenida con el nombre del jugador
+  bienvenida.textContent = `Hola ${nombreJugador}, ¡vamos a jugar!`;
+
+  // Inicia la parte lógica (rondas, secuencia, etc.)
+  iniciarLogica();
+}
+
+function iniciarLogica(){
+  secuencia = [];
+  secuenciaUsuario = [];
+  ronda = 0;
+  mensajeFin.classList.add("oculto");
+
+  // Reiniciamos flags
+  secuenciaEnProgreso = false;
+  juegoTerminadoFlag = false;
+
+  siguienteRonda();
+}
+
+/* Genera la siguiente ronda y muestra la secuencia */
+function siguienteRonda(){
+  ronda++;
+  rondaActual.textContent = ronda;
+
+  const colores = ["verde","rojo","amarillo","azul"];
+  const colorRandom = colores[Math.floor(Math.random() * colores.length)];
+  secuencia.push(colorRandom);
+
+  // Iniciamos la reproducción de la secuencia
+  reproducirSecuencia();
+}
