@@ -241,4 +241,40 @@ function obtenerSonido(color){
     }
     localStorage.setItem("puntajesSimon", JSON.stringify(puntajes));
   }
+  /*
+ * Mostrar y cerrar puntajes
+ */
+function mostrarPuntajes(){
+    cuerpoPuntajes.innerHTML = "";
+    let puntajes = JSON.parse(localStorage.getItem("puntajesSimon")) || [];
+    // Ordenamos desc
+    puntajes.sort((a,b) => b.puntaje - a.puntaje);
+  
+    puntajes.forEach(p => {
+      const fila = document.createElement("tr");
+      const tdNombre = document.createElement("td");
+      const tdPuntaje = document.createElement("td");
+      tdNombre.textContent = p.nombre;
+      tdPuntaje.textContent = p.puntaje;
+      fila.appendChild(tdNombre);
+      fila.appendChild(tdPuntaje);
+      cuerpoPuntajes.appendChild(fila);
+    });
+    tablaPuntajes.classList.remove("oculto");
+  }
+  
+  /*
+   * Navegación
+   */
+  function volverAlMenu(){
+    pantallaJuego.classList.add("oculto");
+    menuPrincipal.classList.remove("oculto");
+  }
+  
+  /*
+   * Auxiliar
+   */
+  function capitalizar(str){
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
   
