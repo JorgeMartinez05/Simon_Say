@@ -122,3 +122,52 @@ function siguienteRonda(){
   // Iniciamos la reproducción de la secuencia
   reproducirSecuencia();
 }
+/*
+ * Reproducción de la secuencia
+ */
+function reproducirSecuencia(){
+    secuenciaEnProgreso = true;      // Bloquea clics
+    labelTurno.textContent = "Secuencia..."; // Indicamos en pantalla
+  
+    musicaSuspenso.currentTime = 0;
+    musicaSuspenso.play().catch(err => {
+      console.warn("No se pudo reproducir la música de suspenso:", err);
+    });
+  
+    let i = 0;
+    const intervalo = setInterval(() => {
+      iluminarColor(secuencia[i]);
+      i++;
+      if(i >= secuencia.length){
+        clearInterval(intervalo);
+  
+        // Detenemos la música
+        musicaSuspenso.pause();
+        musicaSuspenso.currentTime = 0;
+  
+        // Desbloqueamos clics
+        secuenciaEnProgreso = false;
+        labelTurno.textContent = "¡Tu turno!"; // Indicamos que ya puede jugar
+  
+        // Limpiamos la secuencia del usuario para la nueva ronda
+        secuenciaUsuario = [];
+      }
+    }, 600);
+  }
+  
+  /* Ilumina un color y reproduce un beep corto */
+  function iluminarColor(color){
+    const boton = document.getElementById(`btn${capitalizar(color)}`);
+    const sonido = obtenerSonido(color);
+  
+    if(boton){
+      boton.classList.add("activo");
+      if(sonido){
+        sonido.currentTime = 0;
+        sonido.play().catch(err => console.warn("Error al reproducir beep:", err));
+      }
+      setTimeout(() => {
+        boton.classList.remove("activo");
+      }, 300);
+    }
+  }
