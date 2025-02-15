@@ -171,3 +171,74 @@ function reproducirSecuencia(){
       }, 300);
     }
   }
+  
+
+  /* Retorna el beep  */
+function obtenerSonido(color){
+    // (aquí todos los colores usan el mismo beep: sonidoBeep)
+    
+    switch(color){
+      case "verde":    return sonidoBeep;
+      case "rojo":     return sonidoBeep;
+      case "amarillo": return sonidoBeep;
+      case "azul":     return sonidoBeep;
+      default:         return null;
+    }
+  }
+  
+  /*
+   * Manejo de clic del usuario
+   */
+  function manejarClickColor(color){
+    // Bloqueamos clic si:
+    // 1) la secuencia sigue en progreso
+    // 2) el juego ya terminó
+    if(secuenciaEnProgreso || juegoTerminadoFlag){
+      return;
+    }
+  
+    // Agregamos el color que el usuario presionó
+    secuenciaUsuario.push(color);
+    iluminarColor(color);
+  
+    // Verificamos de inmediato el color ingresado
+    const idx = secuenciaUsuario.length - 1;
+    if(secuenciaUsuario[idx] !== secuencia[idx]){
+      juegoTerminado();
+      return;
+    }
+  
+    // Si el usuario completó la secuencia sin error
+    if(secuenciaUsuario.length === secuencia.length){
+      setTimeout(() => {
+        siguienteRonda();
+      }, 800);
+    }
+  }
+  
+  /*
+   * Fin del juego y puntajes
+   */
+  function juegoTerminado(){
+    juegoTerminadoFlag = true;         
+    mensajeFin.classList.remove("oculto");
+    labelTurno.textContent = "¡Fallaste!";
+  
+    // Puntaje = ronda - 1
+    guardarPuntaje(nombreJugador, ronda - 1);
+  }
+  
+  function guardarPuntaje(nombre, puntaje){
+    let puntajes = JSON.parse(localStorage.getItem("puntajesSimon")) || [];
+    let registro = puntajes.find(p => p.nombre === nombre);
+  
+    if(registro){
+      if(puntaje > registro.puntaje){
+        registro.puntaje = puntaje;
+      }
+    } else {
+      puntajes.push({ nombre, puntaje });
+    }
+    localStorage.setItem("puntajesSimon", JSON.stringify(puntajes));
+  }
+  
