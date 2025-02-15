@@ -37,3 +37,38 @@ const btnVolverMenu = document.getElementById("btnVolverMenu");
 
 // Mostrará "Secuencia..." o "¡Tu turno!"
 const labelTurno = document.getElementById("labelTurno");
+
+
+/*
+ * Sonido (beeps)
+ */
+// Beeps cortos
+const sonidoBeep = new Audio("https://actions.google.com/sounds/v1/alarms/beep_short.ogg");
+
+
+
+/*
+ * Listeners en botones de color
+ */
+btnVerde.addEventListener("click", () => manejarClickColor("verde"));
+btnRojo.addEventListener("click", () => manejarClickColor("rojo"));
+btnAmarillo.addEventListener("click", () => manejarClickColor("amarillo"));
+btnAzul.addEventListener("click", () => manejarClickColor("azul"));
+
+/*
+* Listeners en formulario, reinicio y menú
+*/
+formJugador.addEventListener("submit", (e) => {
+  e.preventDefault();
+  nombreJugador = nombreInput.value.trim();
+  if(nombreJugador){
+    iniciarJuego();
+  }
+});
+
+btnReiniciar.addEventListener("click", () => {
+  iniciarLogica();
+});
+btnVolverMenu.addEventListener("click", () => {
+  volverAlMenu();
+});
