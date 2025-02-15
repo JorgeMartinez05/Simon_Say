@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simon Says - Proyecto</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- MENÚ PRINCIPAL -->
+  <div id="menuPrincipal">
+    <h1>Simon Says</h1>
+    <form id="formJugador">
+      <label for="nombreJugador">Ingresa tu nombre:</label><br>
+      <input type="text" id="nombreJugador" required><br><br>
+      <button type="submit" id="btnIniciarJuego">Iniciar Juego</button>
+    </form>
+    <button id="btnVerPuntajes">Ver Puntajes</button>
+  </div>
+
+  <!-- TABLA DE PUNTAJES (OCULTA POR DEFECTO) -->
+  <div id="tablaPuntajes" class="oculto">
+    <h2>Mejores Puntajes</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Jugador</th>
+          <th>Puntaje</th>
+        </tr>
+      </thead>
+      <tbody id="cuerpoPuntajes">
+        <!-- Se generará dinámicamente con JavaScript -->
+      </tbody>
+    </table>
+    <button id="btnCerrarPuntajes">Cerrar</button>
+  </div>
+
+  <!-- PANTALLA DEL JUEGO (OCULTA POR DEFECTO) -->
+  <div id="pantallaJuego" class="oculto">
+    <h2 id="bienvenida"></h2>
+    <p>Ronda actual: <span id="rondaActual">0</span></p>
+    <p id="labelTurno" style="font-weight: bold; margin: 10px 0;"></p>
+
+
+    <!-- Tablero con 4 botones de colores -->
+    <div id="tablero">
+      <div class="fila">
+        <div class="botonColor verde" id="btnVerde"></div>
+        <div class="botonColor rojo" id="btnRojo"></div>
+      </div>
+      <div class="fila">
+        <div class="botonColor amarillo" id="btnAmarillo"></div>
+        <div class="botonColor azul" id="btnAzul"></div>
+      </div>
+    </div>
+
+    <!-- Mensaje de juego terminado (oculto al inicio) -->
+    <div id="mensajeFin" class="oculto">
+      <h3>¡Juego Terminado!</h3>
+      <button id="btnReiniciar">Reiniciar</button>
+      <button id="btnVolverMenu">Menú Principal</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
